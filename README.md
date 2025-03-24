@@ -1,10 +1,10 @@
-# 💸 Java Expense Tracker
+# Expense Tracker
 
 A simple console-based Java application to manage and track your personal expenses. Built using core Java concepts like OOP, file handling, and collections — ideal for beginners and resume projects.
 
 ---
 
-## 📌 Features
+## Features
 
 - ✅ Add new expenses (category, amount, date)
 - 📂 View all recorded expenses
@@ -14,15 +14,15 @@ A simple console-based Java application to manage and track your personal expens
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Java (Core Java, OOP, Collections)
 - File Handling (Serialization)
-- IDE: VS Code / IntelliJ IDEA
+- IDE: VS Code 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -38,11 +38,7 @@ javac Expense.java ExpenseTracker.java
 java ExpenseTracker
 ```
 
-> Make sure Java is installed and configured in your system.
-
----
-
-## 📁 File Structure
+## File Structure
 
 ```
 ├── Expense.java            # Expense class (model)
@@ -53,29 +49,9 @@ java ExpenseTracker
 
 ---
 
-## 🧠 Concepts Practiced
+## Concepts Practiced
 
 - Object-Oriented Programming (OOP)
 - File Handling (Object Serialization)
 - Lists & Collections
 - Console UI in Java
-
----
-
-## ✨ Screenshots
-
-![Console Screenshot](https://dummyimage.com/800x200/cccccc/000000&text=Add+your+screenshot+here)
-
----
-
-## 📝 License
-
-This project is open-source and free to use for educational purposes.
-
----
-
-## 🙋‍♀️ About Me
-
-Made with ❤️ by **Anjali Kumari**  
-🎓 BTech CSE | 💻 Passionate about Java, Web Dev, and Machine Learning  
-📫 [LinkedIn](https://www.linkedin.com/in/your-profile)
