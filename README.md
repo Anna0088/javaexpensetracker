@@ -6,11 +6,11 @@ A simple console-based Java application to manage and track your personal expens
 
 ## Features
 
-- ✅ Add new expenses (category, amount, date)
-- 📂 View all recorded expenses
-- 💰 Calculate total expenses
-- 💾 Persistent storage using file I/O
-- 🧾 Clean, menu-driven console interface
+- Add new expenses (category, amount, date)
+- View all recorded expenses
+- Calculate total expenses
+- Persistent storage using file I/O
+- Clean, menu-driven console interface
 
 ---
 
