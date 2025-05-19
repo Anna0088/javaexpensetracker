@@ -27,7 +27,7 @@ A simple console-based Java application to manage and track your personal expens
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/java-expense-tracker.git
+git clone https://github.com/Anna0088/java-expense-tracker.git
 cd java-expense-tracker
 ```
 
