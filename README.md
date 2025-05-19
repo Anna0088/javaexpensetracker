@@ -1,6 +1,6 @@
 # Expense Tracker
 
-A simple console-based Java application to manage and track your personal expenses. Built using core Java concepts like OOP, file handling, and collections — ideal for beginners and resume projects.
+A simple console-based Java application to manage and track your personal expenses. Built using core Java concepts like OOP, file handling, and collections.
 
 ---
 
