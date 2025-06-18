@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class Expense implements Serializable {
+public class Expense {
     private String category;
     private double amount;
     private String date;
@@ -11,12 +9,20 @@ public class Expense implements Serializable {
         this.date = date;
     }
 
-    public String getCategory() { return category; }
-    public double getAmount() { return amount; }
-    public String getDate() { return date; }
+    public String getCategory() {
+        return category;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
     @Override
     public String toString() {
-        return "Category: " + category + ", Amount: ₹" + amount + ", Date: " + date;
+        return date + " | " + category + " | ₹" + amount;
     }
 }
