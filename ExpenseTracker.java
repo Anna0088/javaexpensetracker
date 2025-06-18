@@ -1,25 +1,23 @@
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ExpenseTracker {
-    private static final String FILE_NAME = "expenses.txt";
-    private static List<Expense> expenseList = new ArrayList<>();
+    static ArrayList<Expense> expenses = new ArrayList<>();
+    static final String FILE_NAME = "expenses.txt";
 
     public static void main(String[] args) {
-        loadExpenses();
-
         Scanner sc = new Scanner(System.in);
-        int choice;
+        loadExpensesFromFile();
 
-        do {
-            System.out.println("\n---- Expense Tracker ----");
-            System.out.println("1. Add Expense");
-            System.out.println("2. View All Expenses");
-            System.out.println("3. Calculate Total Expense");
+        while (true) {
+            System.out.println("\n1. Add Expense");
+            System.out.println("2. View Expenses");
+            System.out.println("3. View Total Expenses");
             System.out.println("4. Exit");
-            System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();  // Consume newline
+            System.out.print("Enter choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
@@ -29,71 +27,76 @@ public class ExpenseTracker {
                     viewExpenses();
                     break;
                 case 3:
-                    calculateTotal();
+                    viewTotalExpenses();
                     break;
                 case 4:
-                    saveExpenses();
-                    System.out.println("Thank you for using Expense Tracker!");
+                    saveExpensesToFile();
+                    System.out.println("Expenses saved. Exiting...");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid choice!");
             }
-        } while (choice != 4);
-
-        sc.close();
+        }
     }
 
-    private static void addExpense(Scanner sc) {
+    static void addExpense(Scanner sc) {
         System.out.print("Enter category: ");
         String category = sc.nextLine();
-
         System.out.print("Enter amount: ");
         double amount = sc.nextDouble();
-        sc.nextLine(); // Consume newline
-
-        System.out.print("Enter date (dd-mm-yyyy): ");
+        sc.nextLine(); // consume newline
+        System.out.print("Enter date (YYYY-MM-DD): ");
         String date = sc.nextLine();
-
-        Expense e = new Expense(category, amount, date);
-        expenseList.add(e);
-        System.out.println("Expense added successfully.");
+        expenses.add(new Expense(category, amount, date));
+        System.out.println("Expense added.");
     }
 
-    private static void viewExpenses() {
-        if (expenseList.isEmpty()) {
-            System.out.println("No expenses recorded yet.");
+    static void viewExpenses() {
+        if (expenses.isEmpty()) {
+            System.out.println("No expenses recorded.");
             return;
         }
-
-        System.out.println("\n--- All Expenses ---");
-        for (Expense e : expenseList) {
+        for (Expense e : expenses) {
             System.out.println(e);
         }
     }
 
-    private static void calculateTotal() {
+    static void viewTotalExpenses() {
         double total = 0;
-        for (Expense e : expenseList) {
-            total += e.getAmount();
+        for (Expense e : expenses) {
+            total += e.amount;
         }
-        System.out.println("Total Expense: ₹" + total);
+        System.out.println("Total Expenses: ₹" + total);
     }
 
-    private static void saveExpenses() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-            out.writeObject(expenseList);
+    static void saveExpensesToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Expense e : expenses) {
+                writer.write(e.category + "," + e.amount + "," + e.date);
+                writer.newLine();
+            }
         } catch (IOException e) {
             System.out.println("Error saving expenses: " + e.getMessage());
         }
     }
 
-    private static void loadExpenses() {
+    static void loadExpensesFromFile() {
         File file = new File(FILE_NAME);
         if (!file.exists()) return;
 
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-            expenseList = (List<Expense>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",", 3);
+                if (parts.length == 3) {
+                    String category = parts[0];
+                    double amount = Double.parseDouble(parts[1]);
+                    String date = parts[2];
+                    expenses.add(new Expense(category, amount, date));
+                }
+            }
+        } catch (IOException e) {
             System.out.println("Error loading expenses: " + e.getMessage());
         }
     }
