@@ -65,7 +65,7 @@ public class ExpenseTracker {
     static void viewTotalExpenses() {
         double total = 0;
         for (Expense e : expenses) {
-            total += e.amount;
+            total += e.getAmount();
         }
         System.out.println("Total Expenses: ₹" + total);
     }
@@ -73,7 +73,7 @@ public class ExpenseTracker {
     static void saveExpensesToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Expense e : expenses) {
-                writer.write(e.category + "," + e.amount + "," + e.date);
+                writer.write(e.getCategory() + "," + e.getAmount() + "," + e.getDate());
                 writer.newLine();
             }
         } catch (IOException e) {
